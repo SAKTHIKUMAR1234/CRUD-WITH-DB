@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD OPERATIONS</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+
+<body onload="detailsDisplay()">
+    <div class="cls-str">
+        <div class="temp"></div>
+        <div class="main-cls">
+            <div class="head-cls">
+                <div class="title">
+                    <h1>Employee Management System</h1>
+                    <button class="btn" onclick="add_menu()">Add Employee</button>
+                </div>
+                <div class="alert" id="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <p id="msg"></p>
+                </div>
+                <div class="edit">
+                    <form id="edit-form" autocomplete="off">
+                        <div class="form-sec" id="form-sec">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="update">
+                    <form id="update-form" autocomplete="off">
+                        <div class="form-sec" id="form-up">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="main-table" id="main-table">
+                </div>
+
+            </div>
+        </div>
+        <div class="temp"></div>
+    </div>
+
+</body>
+
+</html>
