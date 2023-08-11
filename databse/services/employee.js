@@ -20,7 +20,7 @@ const updateData = async (data) => {
     try {
         await dbinstance.query("update empdetails set empname=$1,sal=$2,des=$3,city=$4 where empid=$5", data);
     } catch (error) {
-        return error;
+        throw new Error(error);
     }
 
 }
