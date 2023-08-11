@@ -1,11 +1,13 @@
 const express = require('express')
 const path = require('path');
 const bodyparser = require('body-parser')
-const  con  = require('./getConnection')
-let cors = require("cors");
+const cors = require("cors");
 const app = express()
-app.use(express.json());
 const port = 3000
+const router = require("./router")
+const database = require("./databse/models")
+const seed=require('./databse/seeder')
+app.use(express.json());
 app.use(cors());
 app.use(bodyparser.urlencoded({extended:true}))
 
@@ -16,17 +18,24 @@ app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'/frontend/index.html'));
 })
 
-app.get('/getData/',con.getData);
-app.post('/saveData/',con.insertData);
-app.put('/updateData/',con.updateData);
-app.delete('/deleteData/',con.deleteData);
-
-app.get('',);
+app.use(router)
 
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+  })
+
+
+database.connect().then(()=>{
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`)
+    })
+},err=>{
+    console.log(err)
+    process.exit(1);
 })
+
 
 
 

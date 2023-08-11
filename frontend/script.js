@@ -1,7 +1,7 @@
 
 let update_id = null;
 const data = {
-    "name": ["text", "name"],
+    "Name": ["text", "name"],
     "Designation": ["text", "desc"],
     "Salary": ["number", "sal"],
     "City": ["text", "city"]
@@ -30,7 +30,7 @@ async function add_employee() {
     event.preventDefault();
     document.getElementById("alert").style.display = "none";
     let err = validate();
-    if (err==='valid') {
+    if (err === 'valid') {
         let city = document.getElementById("emp-city").value;
         let name = document.getElementById("emp-name").value;
         let desc = document.getElementById("emp-desc").value;
@@ -41,7 +41,7 @@ async function add_employee() {
             "sal": sal,
             "city": city
         };
-        fetch("http://localhost:3000/saveData/", {
+        fetch("http://localhost:3000/employee/saveData/", {
             method: "POST",
             body: JSON.stringify(str),
 
@@ -106,7 +106,7 @@ async function detailsDisplay() {
             <div><a>Action</a></div>
         </div>`;
 
-    await fetch("http://localhost:3000/getData/").then(res => {
+    await fetch("http://localhost:3000/employee/getData/").then(res => {
         return res.json();
     }).then(res => {
         res.forEach(local => {
@@ -147,7 +147,7 @@ function edit(index) {
     <div><a onclick="exit_menu(2)" class="btn">close</a></div>`;
 
     document.getElementById("form-up").innerHTML = str;
-    fetch('http://localhost:3000/getData/', {
+    fetch('http://localhost:3000/employee/getData/', {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -174,7 +174,7 @@ function update_employee() {
     event.preventDefault();
     //console.log(update_id);
     let err = validate1();
-    if (err==='valid') {
+    if (err === 'valid') {
 
         let city = document.getElementById("emp-city-u").value;
         let name = document.getElementById("emp-name-u").value;
@@ -188,8 +188,8 @@ function update_employee() {
             "city": city
         };
 
-        fetch('http://localhost:3000/updateData/',{
-            method:"PUT",
+        fetch('http://localhost:3000/employee/updateData/', {
+            method: "PUT",
 
             body: JSON.stringify(str),
 
@@ -197,9 +197,9 @@ function update_employee() {
                 "Content-type": "application/json; charset=UTF-8"
             }
 
-        }).then(res=>{
+        }).then(res => {
             return res.json();
-        }).then(result=>{
+        }).then(result => {
             //console.log(result);
             detailsDisplay();
         });
@@ -238,20 +238,20 @@ function validate1() {
 }
 
 
-function del(i) {
+async function del(i) {
     console.log(i);
-    const data={
-        "id" : i
+    const data = {
+        "id": i
     };
-    fetch('http://localhost:3000/deleteData/',{
+    await fetch('http://localhost:3000/employee/deleteData/', {
 
-        method:"DELETE",
+        method: "PUT",
 
-        body:JSON.stringify(data),
+        body: JSON.stringify(data),
 
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
 
-    }).then(location.reload());
+    }).then(detailsDisplay());
 }
