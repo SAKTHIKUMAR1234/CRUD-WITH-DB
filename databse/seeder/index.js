@@ -6,7 +6,6 @@ const connect = require('../models/index.js');
 const seeding =async () => {
     const con = connect.instance();
     const row =await con.query("select * from empdetails order by empid asc");
-    //console.log(row.rows.length);
     if (row.rows.length==0) {
         fs.readdirSync(__dirname)
             .filter(file => {
@@ -17,7 +16,6 @@ const seeding =async () => {
                 data.data.forEach(async rm=>{
                     try {
                         rowData=[rm.name,rm.sal,rm.des,rm.city];
-                        //console.log(rowData);
                         await con.query("insert into empdetails values(nextval('myseq'),$1,$2,$3,$4)", rowData);
                     } catch (error) {
                         console.log(error);
