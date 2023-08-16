@@ -47,4 +47,3 @@ module.exports = {
     authenticate,
     instance: getDatabaseInstance
 }
-

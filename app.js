@@ -6,10 +6,11 @@ const app = express()
 const port = 3000
 const router = require("./router")
 const database = require("./databse/models")
-const seed=require('./databse/seeder')
+const seed=require('./databse/seeder/index')
 app.use(express.json());
 app.use(cors());
 app.use(bodyparser.urlencoded({extended:true}))
+
 
 
 app.use(express.static('frontend'))
@@ -28,8 +29,10 @@ app.use((err, req, res, next) => {
 
 
 database.connect().then(()=>{
-    app.listen(port, () => {
-        console.log(`Example app listening on port ${port}`)
+    seed.seeding().then(()=>{
+        app.listen(port, () => {
+            console.log(`Example app listening on port ${port}`)
+        })
     })
 },err=>{
     console.log(err)
