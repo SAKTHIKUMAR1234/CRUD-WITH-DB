@@ -16,7 +16,7 @@ const seeding =async () => {
                 data.data.forEach(async rm=>{
                     try {
                         rowData=[rm.name,rm.sal,rm.des,rm.city];
-                        await con.query("insert into empdetails values(nextval('myseq'),$1,$2,$3,$4)", rowData);
+                        await con.query("insert into empdetails values(DEFAULT,$1,$2,$3,$4)", rowData);
                     } catch (error) {
                         console.log(error);
                     }

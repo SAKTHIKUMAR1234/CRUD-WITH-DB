@@ -1,6 +1,6 @@
 const EmploeeTable = `CREATE TABLE IF NOT EXISTS empdetails
     (
-        empid integer NOT NULL,
+        empid SERIAL,
         empname text,
         sal numeric,
         des text,

@@ -9,6 +9,51 @@
     <link href="main.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
     <title>Employee Management System Sign Up</title>
+
+
+    <script>
+        const emailValidation=()=>{
+            const mail=document.getElementById('email').value;
+            const ext=mail.split('.');
+            if(!['com','net','org','co','us'].includes(ext[1]) || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))){
+                document.getElementById('email').classList.add('error');
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        const nameValidation=()=>{
+            const name=document.getElementById('frname').value+document.getElementById('lsname').value;
+            console.log(name);
+            if(/^[a-zA-Z]/.test(name)){
+                console.log("hei")
+                return true;
+            }
+            document.getElementById('frname').classList.add('error');
+            document.getElementById('lsname').classList.add('error');
+            return false;
+        }
+
+        const passwordValidation=()=>{
+            if(document.getElementById('pwd').value===document.getElementById('repwd').value){
+                return true;
+            }
+            document.getElementById('pwd').classList.add('error');
+            document.getElementById('repwd').classList.add('error');
+            return false;
+        }
+
+
+
+        const validation=()=>{
+            if(nameValidation() && emailValidation() && passwordValidation()){
+                alert("Signup completed");
+            }
+        }
+    </script>
+
+
 </head>
 <body>
 
@@ -18,13 +63,13 @@
                 <h1>Sign Up</h1>
             </div>
             <div class="content">
-                <div class="temp">First Name :  <input class="input" id="frname" type="text" placeholder="Enter Your First Name" required autocomplete="off"></div>
-                <div class="temp">Last Name :  <input class="input" id="lsname" type="text" placeholder="Enter Your Last Name" required autocomplete="off"></div>
-                <div class="temp">Email Id:   <input class="input" id="email" type="email" placeholder="Enter Your Email" required autocomplete="off"></div>
-                <div class="temp">Password:   <input class="input" id="pwd" type="password" placeholder="Enter Your password" required></div>
-                <div class="temp">ReEnter-Password:   <input class="input" id="pwd" type="password" placeholder="Enter Your password" required></div>
+                <div class="temp">First Name :  <input class="input" id="frname" type="text" placeholder="Enter Your First Name" required autocomplete="off" onchange="this.classList.remove('error')"></div>
+                <div class="temp">Last Name :  <input class="input" id="lsname" type="text" placeholder="Enter Your Last Name" required autocomplete="off" onchange="this.classList.remove('error')"></div>
+                <div class="temp">Email Id:   <input class="input" id="email" type="email" placeholder="Enter Your Email" required autocomplete="off" onchange="this.classList.remove('error')"></div>
+                <div class="temp">Password:   <input class="input" id="pwd" type="password" placeholder="Enter Your password" required onchange="this.classList.remove('error')"></div>
+                <div class="temp">ReEnter-Password:   <input class="input" id="repwd" type="password" placeholder="Enter Your password" required onchange="this.classList.remove('error')"></div>
             <div class="button">
-                <div><a class="btn" id="btnd" style="margin:10px;" >Sign up</a></div>
+                <div><a class="btn" id="btnd" style="margin:10px;" onclick="validation()">Sign up</a></div>
                 <div><a class="btn" id="btnd" style="margin:10px;"  href="login.html">Login</a></div>
             </div>
         </div>
