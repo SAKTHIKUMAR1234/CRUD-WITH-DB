@@ -26,7 +26,7 @@ const connect = () => {
             })
             .forEach(file => {
                 const query = require(path.join(__dirname,file));
-                databaseInstance.query(query)
+                //databaseInstance.query(query)
             })
             resolve();
         });

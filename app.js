@@ -16,7 +16,12 @@ app.use(bodyparser.urlencoded({extended:true}))
 app.use(express.static('frontend'))
 
 app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname,'/frontend/index.html'));
+    //console.log("Hello");
+    res.sendFile(path.join(__dirname,'./frontend/login.html'))
+})
+
+app.get('/signup',(req,res)=>{
+    res.sendFile(path.join(__dirname,'./frontend/signup.html'))
 })
 
 app.use(router)

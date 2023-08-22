@@ -13,8 +13,8 @@ const createUser = async (data) => {
 
 const getUser = async (id) =>{
     try{
-        const data=await dbinstance.query("select * from users where email",[id]);
-        return data.rows;
+        const data=await dbinstance.query("select * from users where email=$1",[id]);
+        return data;
     } catch (error){
         return error;
     }
