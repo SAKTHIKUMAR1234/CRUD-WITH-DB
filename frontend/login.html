@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,22 +14,23 @@
 
 
     <script>
-        const emailValidation=()=>{
-            const mail=document.getElementById('email').value;
-            const ext=mail.split('.');
+        const emailValidation = () => {
+            const mail = document.getElementById('email').value;
+            const ext = mail.split('.');
             console.log("hello");
-            if(!['com','net','org','co','us'].includes(ext[1]) || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))){
+            if (!['com', 'net', 'org', 'co', 'us'].includes(ext[1]) || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))) {
                 document.getElementById('email').classList.add('error');
                 return false;
             }
         }
-        const validation=()=>{
-            if(emailValidation()){
+        const validation = () => {
+            if (emailValidation()) {
                 alert("Valid email");
             }
         }
     </script>
 </head>
+
 <body>
 
     <div class="body">
@@ -38,8 +40,10 @@
                 <h1>Login</h1>
             </div>
             <div class="content">
-                <div class="temp">Email Id:   <input class="input" id="email" type="email" placeholder="Enter Your Email" required autocomplete="off" onchange="this.classList.remove('error')"></div>
-                <div class="temp">Password:   <input class="input" id="pwd" type="password" placeholder="Enter Your password" required></div>
+                <div class="temp">Email Id: <input class="input" id="email" type="email" placeholder="Enter Your Email"
+                        required autocomplete="off" onchange="this.classList.remove('error')"></div>
+                <div class="temp">Password: <input class="input" id="pwd" type="password"
+                        placeholder="Enter Your password" required></div>
             </div>
             <div class="button">
                 <div><a class="btn" id="btnd" style="margin:10px;" href="signup.html">Sign up</a></div>
@@ -47,6 +51,7 @@
             </div>
         </div>
     </div>
-    
+
 </body>
+
 </html>

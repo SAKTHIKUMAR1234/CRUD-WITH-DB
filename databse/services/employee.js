@@ -6,8 +6,6 @@ const getData = async () => {
     return result.rows;
 }
 
-
-
 const insertData = async (data) => {
 
     try {
